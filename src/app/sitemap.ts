@@ -1,0 +1,61 @@
+import type { MetadataRoute } from "next";
+import { STYLE_SEO, SOURCE_SEO } from "@/lib/style-seo";
+
+const BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://citeplex.io";
+
+/** Marketing + tool pages (excludes auth/dashboard). */
+const STATIC_ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] = [
+  { path: "/", priority: 1, changeFrequency: "weekly" },
+  { path: "/generate", priority: 0.95, changeFrequency: "weekly" },
+  { path: "/tools", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/styles", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/pricing", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/plagiarism-checker", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/grammar-checker", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/punctuation-checker", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/paraphrasing-tool", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/summarizer", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/thesis-statement-generator", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/essay-outline-generator", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/hook-generator", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/conclusion-generator", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/annotated-bibliography", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/word-counter", priority: 0.8, changeFrequency: "weekly" },
+  { path: "/character-counter", priority: 0.8, changeFrequency: "weekly" },
+  { path: "/case-converter", priority: 0.8, changeFrequency: "weekly" },
+];
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+  const entries: MetadataRoute.Sitemap = STATIC_ROUTES.map(({ path, priority, changeFrequency }) => ({
+    url: `${BASE}${path}`,
+    lastModified: now,
+    changeFrequency,
+    priority,
+  }));
+
+  // Style landing pages — /styles/apa, /styles/ieee, …
+  for (const seo of Object.values(STYLE_SEO)) {
+    entries.push({
+      url: `${BASE}/styles/${seo.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.88,
+    });
+  }
+
+  // Programmatic cite guides — /cite/website/apa, …
+  const styleSlugs = Object.values(STYLE_SEO).map((s) => s.slug);
+  for (const source of Object.values(SOURCE_SEO)) {
+    for (const styleSlug of styleSlugs) {
+      entries.push({
+        url: `${BASE}/cite/${source.slug}/${styleSlug}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.72,
+      });
+    }
+  }
+
+  return entries;
+}

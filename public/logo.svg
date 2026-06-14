@@ -1,0 +1,12 @@
+<svg width="168" height="40" viewBox="0 0 168 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <path d="M16 11H11.5V29H16" stroke="#1c1917" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M24 11H28.5V29H24" stroke="#1c1917" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16.5 15.5H23.5" stroke="#f59e0b" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M16.5 20H21.5" stroke="#1c1917" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M16.5 24.5H23.5" stroke="#1c1917" stroke-width="2.6" stroke-linecap="round"/>
+  </g>
+  <text x="44" y="27" font-family="Geist, Inter, system-ui, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.5">
+    <tspan fill="#1c1917">cite</tspan><tspan fill="#a8a29e">plex</tspan>
+  </text>
+</svg>
