@@ -8,7 +8,6 @@ import { AuthNav } from "@/components/ui/auth-nav";
 import { TOOL_GROUPS } from "@/lib/tools-nav";
 
 const navigation = [
-  { name: "Generator", href: "/generate" },
   { name: "Styles", href: "/styles" },
   { name: "Pricing", href: "/pricing" },
 ];
@@ -32,7 +31,11 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
         <Link href="/" className="flex items-center group" aria-label="CitePlex home">
-          <Logo markClassName="h-6 w-6 transition-transform group-hover:scale-105" />
+          <Logo
+            className="gap-2.5"
+            markClassName="h-9 w-9 transition-transform group-hover:scale-105"
+            wordmarkClassName="text-2xl"
+          />
         </Link>
 
         <div className="hidden md:flex md:items-center md:gap-7">
@@ -53,7 +56,7 @@ export function Header() {
               onClick={() => setToolsOpen((v) => !v)}
               className="inline-flex items-center gap-1 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              Tools
+              Products
               <ChevronDown className={`h-3.5 w-3.5 transition-transform ${toolsOpen ? "rotate-180" : ""}`} />
             </button>
 
@@ -64,7 +67,7 @@ export function Header() {
                   onClick={() => setToolsOpen(false)}
                   className="mb-3 flex items-center justify-between rounded-lg px-2 py-1.5 text-[12px] font-medium text-primary hover:bg-muted/50"
                 >
-                  View all tools
+                  View all products
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
                 <div className="grid grid-cols-2 gap-4">
@@ -129,7 +132,7 @@ export function Header() {
           ))}
 
           <p className="mt-4 mb-2 px-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-            Writing tools
+            Products
           </p>
           {TOOL_GROUPS.map((group) => (
             <div key={group.label} className="mb-3">

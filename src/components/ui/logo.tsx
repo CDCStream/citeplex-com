@@ -48,6 +48,7 @@ export function LogoMark({ className, accent = true }: LogoMarkProps) {
 interface LogoProps {
   className?: string;
   markClassName?: string;
+  wordmarkClassName?: string;
   showWordmark?: boolean;
   accent?: boolean;
 }
@@ -56,6 +57,7 @@ interface LogoProps {
 export function Logo({
   className,
   markClassName,
+  wordmarkClassName,
   showWordmark = true,
   accent = true,
 }: LogoProps) {
@@ -63,7 +65,12 @@ export function Logo({
     <span className={cn("inline-flex items-center gap-2", className)}>
       <LogoMark className={cn("h-6 w-6", markClassName)} accent={accent} />
       {showWordmark && (
-        <span className="text-[15px] font-bold tracking-tight leading-none">
+        <span
+          className={cn(
+            "text-[15px] font-bold tracking-tight leading-none",
+            wordmarkClassName
+          )}
+        >
           cite<span className="text-zinc-400">plex</span>
         </span>
       )}
