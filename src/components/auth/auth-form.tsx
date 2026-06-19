@@ -61,7 +61,7 @@ export function AuthForm({ mode, redirect = "/dashboard", initialError }: AuthFo
   return (
     <div className="w-full max-w-sm">
       <Link href="/" className="mb-8 inline-flex" aria-label="CitePlex home">
-        <Logo />
+        <Logo markClassName="h-9 w-9" wordmarkClassName="text-2xl" className="gap-2.5" />
       </Link>
 
       <h1 className="text-2xl font-bold tracking-tight">

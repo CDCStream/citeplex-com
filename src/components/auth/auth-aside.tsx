@@ -12,11 +12,11 @@ export function AuthAside() {
   return (
     <aside className="relative hidden overflow-hidden bg-zinc-900 text-zinc-50 lg:flex lg:flex-col lg:justify-between lg:p-12">
       <div className="grain absolute inset-0" />
-      <div className="relative z-10 flex items-center gap-2">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-zinc-50">
-          <LogoMark className="h-6 w-6 text-zinc-900" />
+      <div className="relative z-10 flex items-center gap-3">
+        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-zinc-50">
+          <LogoMark className="h-9 w-9 text-zinc-900" />
         </div>
-        <span className="text-[15px] font-bold tracking-tight">
+        <span className="text-3xl font-bold tracking-tight">
           cite<span className="text-zinc-500">plex</span>
         </span>
       </div>

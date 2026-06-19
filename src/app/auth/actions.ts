@@ -82,11 +82,10 @@ export async function signUp(
     await sendWelcomeEmail(email, fullName).catch(() => {});
   }
 
-  // When email confirmation is enabled, there is no active session yet.
+  // When email confirmation is enabled, there is no active session yet —
+  // send the user to a dedicated "check your inbox" page.
   if (data.user && !data.session) {
-    return {
-      message: "Check your inbox to confirm your email, then sign in.",
-    };
+    redirect(`/verify-email?email=${encodeURIComponent(email)}`);
   }
 
   revalidatePath("/", "layout");
