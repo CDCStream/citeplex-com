@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom";
 import Link from "next/link";
 import { signIn, signUp, signInWithGoogle, type AuthState } from "@/app/auth/actions";
 import { Logo } from "@/components/ui/logo";
-import { Loader2, ArrowRight } from "lucide-react";
+import { Loader2, ArrowRight, ArrowLeft } from "lucide-react";
 
 function SubmitButton({ label }: { label: string }) {
   const { pending } = useFormStatus();
@@ -60,7 +60,15 @@ export function AuthForm({ mode, redirect = "/dashboard", initialError }: AuthFo
 
   return (
     <div className="w-full max-w-sm">
-      <Link href="/" className="mb-8 inline-flex" aria-label="CitePlex home">
+      <Link
+        href="/"
+        className="mb-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <ArrowLeft className="h-3.5 w-3.5" />
+        Back to home
+      </Link>
+
+      <Link href="/" className="mb-8 flex" aria-label="CitePlex home">
         <Logo markClassName="h-9 w-9" wordmarkClassName="text-2xl" className="gap-2.5" />
       </Link>
 
