@@ -1,6 +1,6 @@
 # CitePlex — Yol Haritası & Deploy Notları
 
-Son güncelleme: 2026-06-14
+Son güncelleme: 2026-06-19 · Canlı: https://citeplex.com
 
 > Not: Bu dosya gizli anahtar **değeri** içermez; anahtarlar `.env.local`'dedir
 > (git'e gitmez). Aşağıda yalnızca değişken **isimleri** geçer.
@@ -24,36 +24,35 @@ Son güncelleme: 2026-06-14
 
 ---
 
-## 🚀 Deploy (devam ediyor — Vercel)
+## 🚀 Deploy — TAMAMLANDI (Vercel)
 
-1. [vercel.com/new](https://vercel.com/new) → `CDCStream/citeplex-com` import
-   (Framework: Next.js otomatik, Root Directory: `./`).
-2. Environment Variables ekle (Production + Preview + Development):
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `SUPABASE_SERVICE_ROLE_KEY`
-   - `AI_API_KEY`, `OPENAI_API_KEY`, `AI_BASE_URL`, `AI_MODEL`
-   - `LANGUAGETOOL_API_URL`
-   - `PLAGIARISM_API_KEY`, `PLAGIARISM_API_URL`
-   - `RESEND_API_KEY`, `EMAIL_FROM`
-   - `NEXT_PUBLIC_SENTRY_DSN`
-   - `NEXT_PUBLIC_SITE_URL`  ← **canlı domain** (deploy sonrası düzelt + redeploy)
-   - **EKLEME (boş/placeholder):** `DODO_*`, `SENTRY_ORG/PROJECT/AUTH_TOKEN`
-3. Deploy → canlı URL'i not et.
+- [x] Vercel'e import edildi (Next.js, Root `./`), env'ler girildi, deploy edildi.
+- [x] Canlı: https://citeplex.com (apex birincil; www → apex 308)
+- [x] Canlı QA/smoke test (2026-06-18): 29/29 sayfa 200, tüm API'lar çalışıyor
+      (cite, autofill/CrossRef, grammar/LanguageTool, AI/OpenAI, plagiarism/Winston),
+      auth gate + graceful Dodo (503) doğrulandı. Atıf motoru 11 stilde doğru.
 
 ---
 
-## 🔧 Deploy hemen sonrası (canlı URL gelince)
+## 🔧 ŞİMDİ yapılacaklar (öncelik sırası)
 
-- [ ] `NEXT_PUBLIC_SITE_URL`'i gerçek domain'le güncelle → redeploy
-- [ ] **Supabase → Auth → URL Configuration**: Site URL + Redirect URLs'e
-      canlı domaini ekle (`/auth/callback`, `/reset-password`)
-- [ ] **Google Cloud → OAuth**: Authorized JavaScript origins + redirect URI'ye
-      canlı domaini ekle; gerekiyorsa consent screen'i "Testing"den çıkar
-- [ ] **Resend**: `EMAIL_FROM`'u `onboarding@resend.dev` yerine doğrulanmış
-      domaine çevir
-- [ ] Canlıda smoke test: signup → e-posta onayı → login → Google OAuth →
-      şifre sıfırlama → bir atıf oluştur/kaydet → export → plagiarism taraması
+- [x] **`NEXT_PUBLIC_SITE_URL` = `https://citeplex.com`** — doğrulandı (sitemap
+      canlıda apex domaini gömüyor, localhost gitti).
+- [x] **Domain bağla:** `citeplex.com` Vercel'e bağlı; **apex birincil (200)**,
+      `www.citeplex.com` → 308 → apex. (2026-06-19 doğrulandı.)
+- [x] **Supabase auth custom domain:** `auth.citeplex.com` aktif, trafiği servis
+      ediyor. Google OAuth redirect URI buna göre eklendi
+      (`https://auth.citeplex.com/auth/v1/callback`).
+- [ ] **Supabase → Auth → URL Configuration**: Site URL = `https://citeplex.com`,
+      Redirect URLs'de `/auth/callback` + `/reset-password` olduğunu doğrula
+- [ ] **Google Search Console**: domain DNS (TXT) doğrulaması → branding hatası
+      ("home page URL not registered") çözülür → sitemap gönder
+- [ ] **Google Cloud → OAuth consent**: branding (logo: `citeplex-logo-120.png`),
+      ana sayfa/gizlilik URL'leri; gerekiyorsa "Testing" → "In production"
+- [x] **Resend**: `EMAIL_FROM` → `noreply@citeplex.com` (Vercel env'de ayarlı)
+- [ ] Canlıda **manuel** uçtan uca test (tarayıcı + oturum gerektirir):
+      signup → e-posta onayı → `/verify-email` sayfası → login → Google OAuth →
+      şifre sıfırlama → atıf oluştur/kaydet → export
 - [ ] Sentry'de canlı ortamdan bir test hatası göründüğünü doğrula
 
 ---
