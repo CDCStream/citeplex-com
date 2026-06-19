@@ -45,27 +45,32 @@ Son güncelleme: 2026-06-19 · Canlı: https://citeplex.com
       (`https://auth.citeplex.com/auth/v1/callback`).
 - [ ] **Supabase → Auth → URL Configuration**: Site URL = `https://citeplex.com`,
       Redirect URLs'de `/auth/callback` + `/reset-password` olduğunu doğrula
-- [ ] **Google Search Console**: domain DNS (TXT) doğrulaması → branding hatası
-      ("home page URL not registered") çözülür → sitemap gönder
+- [x] **Google Search Console**: domain DNS (TXT) doğrulandı → sitemap gönderildi,
+      **"Başarılı" / 106 sayfa keşfedildi** (2026-06-19). Branding hatası çözüldü.
 - [ ] **Google Cloud → OAuth consent**: branding (logo: `citeplex-logo-120.png`),
       ana sayfa/gizlilik URL'leri; gerekiyorsa "Testing" → "In production"
 - [x] **Resend**: `EMAIL_FROM` → `noreply@citeplex.com` (Vercel env'de ayarlı)
-- [ ] Canlıda **manuel** uçtan uca test (tarayıcı + oturum gerektirir):
-      signup → e-posta onayı → `/verify-email` sayfası → login → Google OAuth →
-      şifre sıfırlama → atıf oluştur/kaydet → export
+- [x] Canlıda **manuel** uçtan uca test (2026-06-19): signup → e-posta onayı →
+      `/verify-email` → login → Google OAuth → şifre sıfırlama →
+      atıf oluştur/kaydet → export — hepsi geçti.
 - [ ] Sentry'de canlı ortamdan bir test hatası göründüğünü doğrula
 
 ---
 
 ## ⏭ Deploy sonrası (sıradaki işler)
 
-### 1. Dodo Payments (abonelik) — kod hazır, sadece yapılandırma
-- [ ] Dodo dashboard'da ürünleri oluştur (plan × billing: pro/team, monthly/annual)
-- [ ] `DODO_PAYMENTS_API_KEY`, `DODO_PAYMENTS_WEBHOOK_SECRET`,
-      `DODO_PAYMENTS_ENVIRONMENT`, `DODO_PRODUCT_*` env'leri doldur (Vercel + local)
-- [ ] `supabase/migrations/0002_payments.sql`'i Supabase'de çalıştır
-- [ ] Webhook URL'ini Dodo'ya tanıt: `https://<domain>/api/webhook/dodo`
-- [ ] Test mode'da satın alma → webhook → plan yükseltme akışını doğrula
+### 1. Dodo Payments (abonelik) — TEST DOĞRULANDI, live onay bekliyor
+- [x] 4 ürün (pro/team × monthly/annual) — hem test hem live mode'da oluşturuldu
+- [x] Env'ler dolduruldu (Vercel + local) — şu an **test_mode** aktif; live değerleri
+      `.env.local`'da yorumda saklı
+- [x] Supabase `0002_payments.sql` çalıştırıldı (profiles'a dodo kolonları)
+- [x] Webhook: `https://citeplex.com/api/webhook/dodo` (test + live) — imza doğrulama OK
+- [x] Test mode'da test kartıyla satın alma → webhook → plan yükseltme **doğrulandı**
+- [ ] **Live onayı bekleniyor:** Dodo verification — Product Info ✅, Identity ✅;
+      kalan: Business Verification (Individual olarak) + Bank Verification (IBAN)
+- [ ] Live onaylanınca: `.env.local`'daki **LIVE** bloğunu aktif et +
+      Vercel'de `DODO_PAYMENTS_ENVIRONMENT=live_mode` ve live key/secret/ürünleri gir
+      → redeploy. (Kod test edildi, sorunsuz çalışacak.)
 - [ ] Source map için `SENTRY_ORG/PROJECT/AUTH_TOKEN` ekle (okunabilir stack trace)
 
 ### 2. SEO & Analytics (arama motoru + ölçümleme bağlantıları)
