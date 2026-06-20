@@ -102,7 +102,8 @@ Son güncelleme: 2026-06-19 · Canlı: https://citeplex.com
 - [ ] **outrank.so blog entegrasyonu**: blog'u siteye bağla (subpath `/blog`
       veya subdomain), otomatik içerik yayını + sitemap'e dahil et
 - [ ] Google Ads stratejisi
-- [ ] Pricing sayfasında yeni araçların (punctuation, conclusion vb.) listelenmesi
+- [x] Pricing sayfasında tüm araçlar listelendi ("Every tool, included" bölümü)
+      + FAQ "6 styles" → "11 styles" düzeltildi (2026-06-20)
 
 ---
 
