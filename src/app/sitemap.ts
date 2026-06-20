@@ -25,6 +25,8 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: "/word-counter", priority: 0.8, changeFrequency: "weekly" },
   { path: "/character-counter", priority: 0.8, changeFrequency: "weekly" },
   { path: "/case-converter", priority: 0.8, changeFrequency: "weekly" },
+  { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
