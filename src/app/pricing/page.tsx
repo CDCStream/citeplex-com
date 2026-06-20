@@ -6,7 +6,24 @@ import { Check, Sparkles, GraduationCap, Building2 } from "lucide-react";
 import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
 import { PLANS, annualSavingsPct, type PlanDef } from "@/lib/plans";
+import { TOOL_GROUPS } from "@/lib/tools-nav";
 import { cn } from "@/lib/utils";
+
+function TagBadge({ tag }: { tag: string }) {
+  const isPro = tag === "Pro";
+  return (
+    <span
+      className={cn(
+        "ml-1.5 rounded-full px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide",
+        isPro
+          ? "bg-primary/10 text-primary"
+          : "bg-amber-400/20 text-amber-600"
+      )}
+    >
+      {tag}
+    </span>
+  );
+}
 
 const ICONS = {
   free: GraduationCap,
@@ -137,6 +154,48 @@ export default function PricingPage() {
               })}
             </div>
 
+            {/* Every tool included */}
+            <div className="mx-auto mt-24 max-w-5xl">
+              <div className="mb-10 text-center">
+                <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                  Every tool, included
+                </h2>
+                <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+                  One account unlocks the whole writing toolkit. Most tools are free to use —
+                  <TagBadge tag="AI" /> tools have a generous daily limit, and
+                  <TagBadge tag="Pro" /> tools unlock with a paid plan.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {TOOL_GROUPS.map((group) => (
+                  <div
+                    key={group.label}
+                    className="rounded-2xl border border-border bg-background p-6"
+                  >
+                    <h3 className="mb-4 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      {group.label}
+                    </h3>
+                    <ul className="space-y-3.5">
+                      {group.tools.map((tool) => (
+                        <li key={tool.href}>
+                          <Link href={tool.href} className="group block">
+                            <span className="flex items-center text-sm font-medium text-foreground transition-colors group-hover:text-primary">
+                              {tool.name}
+                              {tool.tag && <TagBadge tag={tool.tag} />}
+                            </span>
+                            <span className="mt-0.5 block text-xs text-muted-foreground">
+                              {tool.desc}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* FAQ */}
             <div className="mx-auto mt-20 max-w-3xl">
               <h2 className="mb-10 text-center text-2xl font-bold">
@@ -150,7 +209,7 @@ export default function PricingPage() {
                   },
                   {
                     q: "What do I get on the free account?",
-                    a: "Auto-fill from URL/DOI/ISBN, all 6 styles, all source types, plus saving up to 20 citations a month across 2 projects. No ads, ever.",
+                    a: "Auto-fill from URL/DOI/ISBN, all 11 citation styles, all source types, plus saving up to 20 citations a month across 2 projects. You also get the full writing toolkit — grammar, punctuation, paraphrasing, summarizing, thesis, outline, hook and conclusion tools. No ads, ever.",
                   },
                   {
                     q: "Can I cancel anytime?",
