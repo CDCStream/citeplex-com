@@ -53,7 +53,8 @@ Son güncelleme: 2026-06-19 · Canlı: https://citeplex.com
 - [x] Canlıda **manuel** uçtan uca test (2026-06-19): signup → e-posta onayı →
       `/verify-email` → login → Google OAuth → şifre sıfırlama →
       atıf oluştur/kaydet → export — hepsi geçti.
-- [ ] Sentry'de canlı ortamdan bir test hatası göründüğünü doğrula
+- [x] Sentry canlı hata testi (2026-06-20): prod'dan tetiklenen hata Issues'a
+      düştü (environment: production) — doğrulandı.
 
 ---
 
@@ -76,13 +77,11 @@ Son güncelleme: 2026-06-19 · Canlı: https://citeplex.com
 ### 2. SEO & Analytics (arama motoru + ölçümleme bağlantıları)
 - [ ] **Google Search Console (GSC)**: domain (veya URL-prefix) doğrula
       → `sitemap.xml` gönder → indexleme/performans takibi
-- [ ] **Bing Webmaster Tools**: site ekle + doğrula → sitemap gönder
-      (GSC'den içe aktarma seçeneği de var, hızlı yol)
-- [ ] **Google Analytics 4 (GA4)**: property aç → measurement ID'yi siteye ekle
-      (env: `NEXT_PUBLIC_GA_ID` + layout'a script) → GSC ile bağla
-- [ ] **Ahrefs**: site ekle (Webmaster Tools/dashboard) → backlink + anahtar
-      kelime + arama performansı takibi
-- [ ] `robots.txt` ve `sitemap.xml` canlıda kontrol (zaten üretiliyor)
+- [x] **Bing Webmaster Tools**: GSC'den import edildi (2026-06-19)
+- [x] **Google Analytics 4 (GA4)**: `G-FVMYQDKPE4` — canlıda yayında
+      (`NEXT_PUBLIC_GA_ID` + `GoogleAnalytics` bileşeni). [ ] GSC ile bağlama (ops.)
+- [x] **Ahrefs Web Analytics**: canlıda yayında (`AhrefsAnalytics` bileşeni, inline key)
+- [x] `robots.txt` ve `sitemap.xml` canlıda doğrulandı (200, application/xml)
 
 ### 3. Google Cloud Console — brand & doğrulama
 - [ ] **OAuth consent screen branding**: uygulama adı, logo, destek e-postası,
