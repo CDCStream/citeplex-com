@@ -9,7 +9,7 @@ export function AhrefsAnalytics() {
     <Script
       src="https://analytics.ahrefs.com/analytics.js"
       data-key="+trViQ8eqxufx2nBLIS1Zw"
-      strategy="afterInteractive"
+      strategy="lazyOnload"
     />
   );
 }

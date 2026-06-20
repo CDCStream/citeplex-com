@@ -1,11 +1,27 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
-import { AuthNav } from "@/components/ui/auth-nav";
 import { TOOL_GROUPS } from "@/lib/tools-nav";
+
+const AuthNav = dynamic(
+  () => import("@/components/ui/auth-nav").then((m) => ({ default: m.AuthNav })),
+  {
+    ssr: false,
+    loading: () => (
+      <Link
+        href="/generate"
+        className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-[13px] font-medium text-background"
+      >
+        Start citing
+        <ArrowRight className="h-3.5 w-3.5" />
+      </Link>
+    ),
+  }
+);
 
 const navigation = [
   { name: "Styles", href: "/styles" },

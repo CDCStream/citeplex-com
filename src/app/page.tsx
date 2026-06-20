@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { LiveCitationDemo } from "@/components/landing/live-demo";
+import { LiveCitationDemoStatic } from "@/components/landing/live-demo-static";
 import { TOOL_GROUPS } from "@/lib/tools-nav";
 
 export default function HomePage() {
@@ -58,7 +58,7 @@ export default function HomePage() {
               {/* Right — product demo */}
               <div className="lg:col-span-7 flex justify-center lg:justify-end">
                 <div className="w-full max-w-md lg:max-w-none">
-                  <LiveCitationDemo />
+                  <LiveCitationDemoStatic />
                 </div>
               </div>
             </div>
@@ -80,7 +80,7 @@ export default function HomePage() {
         </section>
 
         {/* ─────────── WRITING TOOLS ─────────── */}
-        <section id="tools" className="py-24 sm:py-32">
+        <section id="tools" className="content-auto py-24 sm:py-32">
           <div className="mx-auto max-w-6xl px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
               <div>
@@ -131,7 +131,7 @@ export default function HomePage() {
         </section>
 
         {/* ─────────── WHY THIS EXISTS ─────────── */}
-        <section className="border-t border-border py-24 sm:py-32">
+        <section className="content-auto border-t border-border py-24 sm:py-32">
           <div className="mx-auto max-w-6xl px-6 lg:px-8">
             <div className="max-w-2xl">
               <p className="text-[11px] font-mono text-zinc-400 uppercase tracking-[0.2em] mb-4">
@@ -201,7 +201,7 @@ export default function HomePage() {
         </section>
 
         {/* ─────────── PRODUCT BENTO ─────────── */}
-        <section className="border-t border-border bg-muted/30 grain py-24 sm:py-32">
+        <section className="content-auto border-t border-border bg-muted/30 grain py-24 sm:py-32">
           <div className="mx-auto max-w-6xl px-6 lg:px-8">
             <div className="max-w-lg mb-14">
               <p className="text-[11px] font-mono text-zinc-400 uppercase tracking-[0.2em] mb-4">
@@ -366,7 +366,7 @@ export default function HomePage() {
         </section>
 
         {/* ─────────── BEFORE / AFTER ─────────── */}
-        <section className="py-24 sm:py-32">
+        <section className="content-auto py-24 sm:py-32">
           <div className="mx-auto max-w-6xl px-6 lg:px-8">
             <div className="max-w-lg mb-14">
               <p className="text-[11px] font-mono text-zinc-400 uppercase tracking-[0.2em] mb-4">
@@ -426,7 +426,7 @@ export default function HomePage() {
         </section>
 
         {/* ─────────── STYLE PREVIEWS ─────────── */}
-        <section className="border-t border-border bg-muted/30 py-24 sm:py-32">
+        <section className="content-auto border-t border-border bg-muted/30 py-24 sm:py-32">
           <div className="mx-auto max-w-6xl px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
               <div>
