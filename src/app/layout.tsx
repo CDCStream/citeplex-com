@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { AhrefsAnalytics } from "@/components/analytics/ahrefs-analytics";
+import { SiteJsonLd } from "@/components/seo/site-json-ld";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +46,11 @@ export const metadata: Metadata = {
     title: "CitePlex — AI-Powered Citation Generator",
     description: "Fast, accurate citations in APA, MLA, Chicago, Turabian & Bluebook. No ads.",
   },
+  alternates: {
+    types: {
+      "text/plain": [{ url: "/llms.txt", title: "LLM-readable site summary" }],
+    },
+  },
 };
 
 export default function RootLayout({
@@ -58,7 +64,13 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <head>
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable site summary" />
+      </head>
+      <body className="min-h-full flex flex-col">
+        <SiteJsonLd />
+        {children}
+      </body>
       {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
       <AhrefsAnalytics />
     </html>
