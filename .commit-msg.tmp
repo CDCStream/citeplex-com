@@ -1,6 +1,0 @@
-perf(mobile): cut homepage TBT for Lighthouse score
-
-Replace client-side hero demo with a CSS-only server component,
-defer GA/Ahrefs to lazyOnload, lazy-load AuthNav (Supabase off critical
-path), add font-display swap, disable grain animation on mobile, and
-use content-visibility on below-fold sections.
