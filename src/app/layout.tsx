@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://citeplex.com"),
   title: "CitePlex — AI-Powered Citation Generator | APA, MLA, Bluebook, Turabian",
   description:
     "Generate accurate citations in APA 7, MLA 9, Chicago, Turabian, Bluebook, and Harvard styles instantly. No ads, no clutter — just fast, clean citations for academics, law students, and researchers.",
@@ -36,6 +37,13 @@ export const metadata: Metadata = {
     title: "CitePlex — AI-Powered Citation Generator",
     description: "Fast, accurate citations in APA, MLA, Chicago, Turabian & Bluebook. No ads.",
     type: "website",
+    url: "/",
+    siteName: "CitePlex",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CitePlex — AI-Powered Citation Generator",
+    description: "Fast, accurate citations in APA, MLA, Chicago, Turabian & Bluebook. No ads.",
   },
 };
 
