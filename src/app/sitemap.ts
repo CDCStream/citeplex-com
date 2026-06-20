@@ -4,6 +4,10 @@ import { getPublishedPosts } from "@/lib/blog";
 
 const BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://citeplex.com";
 
+// Regenerate hourly so deleted/added blog posts don't leave stale (404) URLs
+// in the sitemap. Also revalidated on demand by the Outrank webhook.
+export const revalidate = 3600;
+
 /** Marketing + tool pages (excludes auth/dashboard). */
 const STATIC_ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] = [
   { path: "/", priority: 1, changeFrequency: "weekly" },
