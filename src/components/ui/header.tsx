@@ -10,6 +10,7 @@ import { TOOL_GROUPS } from "@/lib/tools-nav";
 const navigation = [
   { name: "Styles", href: "/styles" },
   { name: "Pricing", href: "/pricing" },
+  { name: "Blog", href: "/blog" },
 ];
 
 export function Header() {

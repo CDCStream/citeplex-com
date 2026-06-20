@@ -22,6 +22,7 @@ const columns = [
       { name: "Case Converter", href: "/case-converter" },
       { name: "Pricing", href: "/pricing" },
       { name: "Style Guides", href: "/styles" },
+      { name: "Blog", href: "/blog" },
     ],
   },
   {

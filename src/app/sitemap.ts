@@ -1,13 +1,15 @@
 import type { MetadataRoute } from "next";
 import { STYLE_SEO, SOURCE_SEO } from "@/lib/style-seo";
+import { getPublishedPosts } from "@/lib/blog";
 
-const BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://citeplex.io";
+const BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://citeplex.com";
 
 /** Marketing + tool pages (excludes auth/dashboard). */
 const STATIC_ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] = [
   { path: "/", priority: 1, changeFrequency: "weekly" },
   { path: "/generate", priority: 0.95, changeFrequency: "weekly" },
   { path: "/tools", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/blog", priority: 0.8, changeFrequency: "daily" },
   { path: "/styles", priority: 0.85, changeFrequency: "weekly" },
   { path: "/pricing", priority: 0.7, changeFrequency: "monthly" },
   { path: "/plagiarism-checker", priority: 0.85, changeFrequency: "weekly" },
@@ -25,7 +27,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: "/case-converter", priority: 0.8, changeFrequency: "weekly" },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const entries: MetadataRoute.Sitemap = STATIC_ROUTES.map(({ path, priority, changeFrequency }) => ({
     url: `${BASE}${path}`,
@@ -33,6 +35,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency,
     priority,
   }));
+
+  // Blog posts (auto-published via Outrank) — /blog/{slug}
+  const posts = await getPublishedPosts();
+  for (const post of posts) {
+    entries.push({
+      url: `${BASE}/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
+  }
 
   // Style landing pages — /styles/apa, /styles/ieee, …
   for (const seo of Object.values(STYLE_SEO)) {
