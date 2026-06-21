@@ -70,6 +70,23 @@ export default function CompareHubPage() {
             ))}
           </div>
 
+          <div className="mt-10">
+            <h2 className="text-sm font-semibold text-muted-foreground">
+              Looking for alternatives?
+            </h2>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {COMPETITORS.map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/alternatives/${c.slug}`}
+                  className="inline-flex rounded-full border border-border bg-background px-3.5 py-1.5 text-[13px] font-medium text-foreground/80 transition-colors hover:border-primary/40 hover:text-foreground"
+                >
+                  Best {c.name} alternatives
+                </Link>
+              ))}
+            </div>
+          </div>
+
           <div className="mt-12 rounded-2xl border border-border bg-muted/30 p-8 text-center">
             <h3 className="text-lg font-bold">See for yourself</h3>
             <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">

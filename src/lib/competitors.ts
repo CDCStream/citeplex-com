@@ -14,6 +14,8 @@ export interface CompareRow {
 export interface Competitor {
   slug: string;
   name: string;
+  /** Neutral one-liner about the competitor (used in alternatives listicles). */
+  summary: string;
   /** Short tagline shown under the H1. */
   blurb: string;
   /** One-paragraph intro framing the comparison. */
@@ -44,6 +46,8 @@ export const COMPETITORS: Competitor[] = [
   {
     slug: "easybib",
     name: "EasyBib",
+    summary:
+      "A long-running, Chegg-owned generator with a free MLA tier; APA and other styles require a paid plan, and the interface carries ads.",
     blurb: "A free, ad-free EasyBib alternative with 11 styles and no paywall on basic citations.",
     intro:
       "EasyBib is one of the oldest citation tools, now owned by Chegg. Its free tier is largely limited to MLA, with APA and other styles gated behind a paid plan, and the experience is heavy with ads. CitePlex generates citations in all 11 styles for free, with no ads and no account required.",
@@ -84,6 +88,8 @@ export const COMPETITORS: Competitor[] = [
   {
     slug: "citation-machine",
     name: "Citation Machine",
+    summary:
+      "Another Chegg-owned tool with a limited free tier and paid upgrades; public reviews often cite its heavy ads.",
     blurb: "A faster, ad-free Citation Machine alternative — all styles free, no clutter.",
     intro:
       "Citation Machine, also part of Chegg, follows the same model as EasyBib: a limited free tier, paid upgrades for full style support, and an ad-heavy interface that public reviews frequently rate poorly. CitePlex is a clean, ad-free alternative with every style free.",
@@ -120,6 +126,8 @@ export const COMPETITORS: Competitor[] = [
   {
     slug: "scribbr",
     name: "Scribbr",
+    summary:
+      "A polished, ad-free generator known for strong APA guidance, covering four styles (APA, MLA, Chicago, Harvard) alongside paid proofreading services.",
     blurb: "A Scribbr alternative with more styles, Bluebook legal support, and AI writing tools.",
     intro:
       "Scribbr is well regarded for accurate APA citations and helpful guides, but its generator focuses on four styles (APA, MLA, Chicago, Harvard) and upsells paid proofreading and plagiarism services. CitePlex covers 11 styles — including legal Bluebook — and bundles AI essay tools.",
@@ -156,6 +164,8 @@ export const COMPETITORS: Competitor[] = [
   {
     slug: "mybib",
     name: "MyBib",
+    summary:
+      "A free, ad-free generator with a very large CSL style library; great for breadth, with auto-generated output that can vary in quality.",
     blurb: "A MyBib alternative with curated, hand-tuned styles, legal citations, and AI tools.",
     intro:
       "MyBib is a popular free, ad-free generator with thousands of CSL styles. Its strength is breadth; its trade-off is that auto-generated CSL output can vary in quality. CitePlex focuses on 11 carefully hand-tuned styles, adds Bluebook legal support, and includes AI writing tools.",
@@ -192,6 +202,8 @@ export const COMPETITORS: Competitor[] = [
   {
     slug: "bibme",
     name: "BibMe",
+    summary:
+      "A Chegg-owned generator with a free MLA tier and paid upgrades for APA and other styles; ads throughout.",
     blurb: "A free, ad-free BibMe alternative with all 11 styles and no paywall.",
     intro:
       "BibMe is another Chegg-owned generator that follows the familiar pattern: free MLA, paid upgrades for APA and other styles, and ads throughout. CitePlex unlocks every style for free with no ads.",
@@ -223,6 +235,8 @@ export const COMPETITORS: Competitor[] = [
   {
     slug: "zoterobib",
     name: "ZoteroBib",
+    summary:
+      "A fast, free, account-free generator from the Zotero team with thousands of CSL styles; minimal by design — no saved projects or writing tools.",
     blurb: "A ZoteroBib alternative that adds saving, projects, legal citations, and AI tools.",
     intro:
       "ZoteroBib is a fast, free, account-free generator from the Zotero team with thousands of CSL styles. It's excellent for one-off bibliographies but intentionally minimal — no accounts, no saved projects, no writing tools. CitePlex adds saved citations, projects, Bluebook, and AI essay tools on top of free generation.",
@@ -248,6 +262,113 @@ export const COMPETITORS: Competitor[] = [
       {
         q: "How is CitePlex different from ZoteroBib?",
         a: "ZoteroBib is a minimal, session-based generator with a huge CSL library. CitePlex adds saved citations, organized projects, citation history, Bluebook legal support, and AI writing tools, while still letting you generate for free.",
+      },
+    ],
+  },
+  {
+    slug: "quillbot",
+    name: "QuillBot",
+    summary:
+      "A writing-suite tool whose citation generator covers MLA, APA, and Chicago; best known for paraphrasing and grammar features.",
+    blurb: "A QuillBot alternative with more citation styles, Bluebook legal support, and no paywall on core tools.",
+    intro:
+      "QuillBot's citation generator is a small part of a broader paraphrasing and grammar suite, and it supports three core styles (MLA, APA, Chicago). CitePlex is citation-first: 11 styles including Bluebook, plus its own AI paraphrasing and summarizing tools, all free to use.",
+    metaDescription:
+      "CitePlex vs QuillBot: 11 citation styles vs 3, Bluebook legal support, plus free paraphrasing and summarizing. A citation-first QuillBot alternative.",
+    whyCiteplex: [
+      "11 citation styles vs QuillBot's 3 (MLA, APA, Chicago)",
+      "Bluebook legal citations for law students",
+      "Citation-first workflow, not buried in a writing suite",
+      "Free paraphrasing and summarizing tools included",
+    ],
+    whenCompetitor:
+      "QuillBot is a strong choice if your main need is paraphrasing and you want citations bundled into the same writing assistant you already use.",
+    rows: [
+      { feature: "Citation styles", citeplex: CITEPLEX.styles, competitor: "MLA, APA, Chicago (3)", win: "citeplex" },
+      { feature: "Bluebook (legal)", citeplex: CITEPLEX.legal, competitor: "Not supported", win: "citeplex" },
+      { feature: "Paraphrasing", citeplex: "Built-in AI paraphraser", competitor: "Strong paraphraser", win: "tie" },
+      { feature: "Ads", citeplex: CITEPLEX.ads, competitor: "No ads", win: "tie" },
+      { feature: "Free generation", citeplex: CITEPLEX.free, competitor: "Free tier; Premium upsell", win: "citeplex" },
+      { feature: "Export", citeplex: CITEPLEX.export, competitor: "Word", win: "tie" },
+    ],
+    faqs: [
+      {
+        q: "Is CitePlex a good QuillBot alternative for citations?",
+        a: "Yes. CitePlex is citation-first with 11 styles (including Bluebook) versus QuillBot's three, and it includes its own free paraphrasing and summarizing tools.",
+      },
+      {
+        q: "Does CitePlex paraphrase like QuillBot?",
+        a: "CitePlex includes an AI paraphrasing tool and a summarizer, with a generous daily free limit. QuillBot's paraphraser is its flagship feature; both work well for rewriting text.",
+      },
+    ],
+  },
+  {
+    slug: "cite-this-for-me",
+    name: "Cite This For Me",
+    summary:
+      "A Chegg-owned generator (formerly RefME) with a free reference cap and a paid plan for unlimited references and full styles.",
+    blurb: "A Cite This For Me alternative with unlimited free citations and no reference cap.",
+    intro:
+      "Cite This For Me (formerly RefME) limits free users to a small number of references and gates unlimited use and full style access behind a paid plan. CitePlex lets you generate unlimited citations in all 11 styles for free, with no cap and no ads.",
+    metaDescription:
+      "CitePlex vs Cite This For Me: unlimited free citations, all 11 styles, Bluebook legal support, and AI tools — no reference cap, no ads.",
+    whyCiteplex: [
+      "Unlimited free citations — no reference cap",
+      "All 11 styles free, including Bluebook",
+      "No ads, no forced sign-up to generate",
+      "AI writing tools included",
+    ],
+    whenCompetitor:
+      "Cite This For Me's browser extension and established account system may suit users who already store their bibliographies there.",
+    rows: [
+      { feature: "Free references", citeplex: "Unlimited generate & copy", competitor: "Capped on free tier", win: "citeplex" },
+      { feature: "Ads", citeplex: CITEPLEX.ads, competitor: "Ad-supported", win: "citeplex" },
+      { feature: "Free styles", citeplex: "All 11 styles free", competitor: "Limited; full styles paid", win: "citeplex" },
+      { feature: "Bluebook (legal)", citeplex: CITEPLEX.legal, competitor: "Not supported", win: "citeplex" },
+      { feature: "AI writing tools", citeplex: CITEPLEX.ai, competitor: "Via Chegg", win: "tie" },
+      { feature: "Price", citeplex: CITEPLEX.price, competitor: "~$9.95/mo for unlimited", win: "citeplex" },
+    ],
+    faqs: [
+      {
+        q: "Is CitePlex a free Cite This For Me alternative?",
+        a: "Yes. CitePlex offers unlimited free citation generation in all 11 styles with no reference cap, whereas Cite This For Me limits free references and gates full access behind a paid plan.",
+      },
+    ],
+  },
+  {
+    slug: "grammarly",
+    name: "Grammarly",
+    summary:
+      "A grammar and writing assistant whose citation generator handles MLA, APA, and Chicago; automatic citations require its full product.",
+    blurb: "A Grammarly alternative for citations — 11 styles, Bluebook, and dedicated source forms.",
+    intro:
+      "Grammarly is a grammar and writing assistant first; its citation generator supports three styles (MLA, APA, Chicago) and automatic citations depend on its full product. CitePlex is built for citations — 11 styles, Bluebook legal support, structured source forms — plus its own free grammar and punctuation checker.",
+    metaDescription:
+      "CitePlex vs Grammarly for citations: 11 styles vs 3, Bluebook legal support, dedicated source forms, and a free grammar checker. Compare side by side.",
+    whyCiteplex: [
+      "11 citation styles vs Grammarly's 3",
+      "Bluebook legal citations Grammarly doesn't offer",
+      "Dedicated source-type forms for accurate fields",
+      "Free grammar & punctuation checker included",
+    ],
+    whenCompetitor:
+      "Grammarly is excellent if your priority is real-time grammar and style help across every app you write in; citations are a secondary feature there.",
+    rows: [
+      { feature: "Citation styles", citeplex: CITEPLEX.styles, competitor: "MLA, APA, Chicago (3)", win: "citeplex" },
+      { feature: "Bluebook (legal)", citeplex: CITEPLEX.legal, competitor: "Not supported", win: "citeplex" },
+      { feature: "Grammar checking", citeplex: "Free grammar & punctuation checker", competitor: "Best-in-class grammar", win: "competitor" },
+      { feature: "Source forms", citeplex: "Structured per source type", competitor: "Manual entry", win: "citeplex" },
+      { feature: "Ads", citeplex: CITEPLEX.ads, competitor: "No ads", win: "tie" },
+      { feature: "Free generation", citeplex: CITEPLEX.free, competitor: "Free tier; Premium upsell", win: "citeplex" },
+    ],
+    faqs: [
+      {
+        q: "Should I use CitePlex or Grammarly for citations?",
+        a: "For citations specifically, CitePlex supports 11 styles (including Bluebook) versus Grammarly's three and offers dedicated source forms. Grammarly remains the stronger choice for real-time grammar help across your whole workflow.",
+      },
+      {
+        q: "Does CitePlex check grammar like Grammarly?",
+        a: "CitePlex includes a free grammar and punctuation checker for essays and papers. Grammarly offers more advanced, real-time grammar assistance as its core product.",
       },
     ],
   },

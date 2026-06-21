@@ -57,13 +57,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
-  // Comparison pages — /vs/easybib, /vs/scribbr, …
+  // Comparison + alternatives pages — /vs/easybib, /alternatives/easybib, …
   for (const c of COMPETITORS) {
     entries.push({
       url: `${BASE}/vs/${c.slug}`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.78,
+    });
+    entries.push({
+      url: `${BASE}/alternatives/${c.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.75,
     });
   }
 

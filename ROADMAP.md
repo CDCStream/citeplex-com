@@ -60,18 +60,16 @@ Son güncelleme: 2026-06-19 · Canlı: https://citeplex.com
 
 ## ⏭ Deploy sonrası (sıradaki işler)
 
-### 1. Dodo Payments (abonelik) — TEST DOĞRULANDI, live onay bekliyor
+### 1. Dodo Payments (abonelik) — LIVE ONAYLANDI ✅ → env swap kaldı
 - [x] 4 ürün (pro/team × monthly/annual) — hem test hem live mode'da oluşturuldu
 - [x] Env'ler dolduruldu (Vercel + local) — şu an **test_mode** aktif; live değerleri
       `.env.local`'da yorumda saklı
 - [x] Supabase `0002_payments.sql` çalıştırıldı (profiles'a dodo kolonları)
 - [x] Webhook: `https://citeplex.com/api/webhook/dodo` (test + live) — imza doğrulama OK
 - [x] Test mode'da test kartıyla satın alma → webhook → plan yükseltme **doğrulandı**
-- [ ] **Live onayı bekleniyor:** Dodo verification — Product Info ✅, Identity ✅;
-      kalan: Business Verification (Individual olarak) + Bank Verification (IBAN)
-- [ ] Live onaylanınca: `.env.local`'daki **LIVE** bloğunu aktif et +
-      Vercel'de `DODO_PAYMENTS_ENVIRONMENT=live_mode` ve live key/secret/ürünleri gir
-      → redeploy. (Kod test edildi, sorunsuz çalışacak.)
+- [x] **Live onay:** Product Info ✅, Identity ✅, Bank ✅ — **LIVE PAYMENTS ACTIVE**
+- [ ] **ŞİMDİ:** Vercel env'lerini live'a çevir → redeploy → canlı checkout testi
+- [ ] Dodo Live dashboard'da webhook URL + live `whsec_` secret doğrula
 - [ ] Source map için `SENTRY_ORG/PROJECT/AUTH_TOKEN` ekle (okunabilir stack trace)
 
 ### 2. SEO & Analytics (arama motoru + ölçümleme bağlantıları)

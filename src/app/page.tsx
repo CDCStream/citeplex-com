@@ -5,6 +5,49 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { LiveCitationDemoStatic } from "@/components/landing/live-demo-static";
 import { TOOL_GROUPS } from "@/lib/tools-nav";
 
+// Question-formatted FAQs double as AI-search / "answer engine" fuel and feed
+// the FAQPage JSON-LD below.
+const HOME_FAQS = [
+  {
+    q: "Is CitePlex free to use?",
+    a: "Yes. You can generate and copy unlimited citations in all 11 styles for free, with no ads and no sign-up required. A Pro plan ($9.99/mo) unlocks saved projects, exports, and higher AI limits.",
+  },
+  {
+    q: "Which citation styles does CitePlex support?",
+    a: "CitePlex supports 11 styles: APA 7th, MLA 9th, Chicago 17th, Turabian, Harvard, IEEE, AMA 11th, ACS, CSE, ASA, and Bluebook 22nd edition for legal citations.",
+  },
+  {
+    q: "How do I cite a source with CitePlex?",
+    a: "Pick your citation style, choose the source type (website, book, journal, case law, and more), then paste a URL or DOI to auto-fill the details — or enter them manually. CitePlex formats the citation instantly in your browser so you can copy it straight into your paper.",
+  },
+  {
+    q: "Can CitePlex generate citations from a URL or DOI automatically?",
+    a: "Yes. Paste a URL or DOI and CitePlex pulls the title, authors, date, publisher, and journal from CrossRef, OpenLibrary, and page metadata, then formats it in your chosen style.",
+  },
+  {
+    q: "Does CitePlex create in-text citations and a reference list?",
+    a: "Yes. Every citation includes both the full reference-list entry and the matching in-text citation for your selected style, so your paper stays consistent.",
+  },
+  {
+    q: "Is CitePlex a good free alternative to EasyBib or Citation Machine?",
+    a: "Yes. Unlike EasyBib and Citation Machine, CitePlex keeps all 11 styles free, shows no ads, doesn't force account creation, and adds Bluebook legal support plus AI writing tools.",
+  },
+  {
+    q: "Does CitePlex support Bluebook legal citations?",
+    a: "Yes. CitePlex generates Bluebook 22nd edition citations for cases, statutes, and regulations — useful for law students and practitioners writing briefs or law review footnotes.",
+  },
+];
+
+const HOME_FAQ_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: HOME_FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-full">
@@ -473,6 +516,39 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+        </section>
+
+        {/* ─────────── FAQ ─────────── */}
+        <section className="content-auto border-t border-border py-24 sm:py-32">
+          <div className="mx-auto max-w-3xl px-6 lg:px-8">
+            <div className="mb-12">
+              <p className="text-[11px] font-mono text-zinc-400 uppercase tracking-[0.2em] mb-4">
+                FAQ
+              </p>
+              <h2 className="text-[2rem] sm:text-[2.5rem] font-bold tracking-[-0.03em] leading-[1.15]">
+                Common questions.
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              {HOME_FAQS.map((faq) => (
+                <div
+                  key={faq.q}
+                  className="rounded-xl border border-border bg-card p-6"
+                >
+                  <h3 className="text-[15px] font-semibold">{faq.q}</h3>
+                  <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
+                    {faq.a}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_FAQ_JSONLD) }}
+          />
         </section>
 
         {/* ─────────── FINAL CTA ─────────── */}
