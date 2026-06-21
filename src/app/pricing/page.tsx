@@ -31,6 +31,39 @@ const ICONS = {
   team: Building2,
 } as const;
 
+const PRICING_FAQS = [
+  {
+    q: "Is generating citations really free?",
+    a: "Yes — generating and copying citations is unlimited and free, forever, with no account required. You only need a paid plan to save unlimited citations and export to Word, BibTeX, or RIS.",
+  },
+  {
+    q: "What do I get on the free account?",
+    a: "Auto-fill from URL/DOI/ISBN, all 11 citation styles, all source types, plus saving up to 20 citations a month across 2 projects. You also get the full writing toolkit — grammar, punctuation, paraphrasing, summarizing, thesis, outline, hook and conclusion tools. No ads, ever.",
+  },
+  {
+    q: "Can I cancel anytime?",
+    a: "Absolutely. Cancel in one click from your dashboard. No hidden cancellation flow, no continued billing after cancellation.",
+  },
+  {
+    q: "Do you support Bluebook for legal citations?",
+    a: "Yes — Bluebook 22nd Edition for cases, statutes, books, and journal articles, in both practitioner and law-review formats.",
+  },
+  {
+    q: "How accurate are the citations?",
+    a: "Our engine is rule-based and follows each style guide precisely. We still recommend reviewing citations before final submission — no tool is perfect for every edge case.",
+  },
+];
+
+const PRICING_FAQ_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: PRICING_FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 function priceLabel(plan: PlanDef, billing: "monthly" | "annual") {
   if (plan.monthly === 0) return { amount: "$0", period: "forever" };
   if (billing === "annual") {
@@ -202,34 +235,17 @@ export default function PricingPage() {
                 Frequently Asked Questions
               </h2>
               <div className="space-y-6">
-                {[
-                  {
-                    q: "Is generating citations really free?",
-                    a: "Yes — generating and copying citations is unlimited and free, forever, with no account required. You only need a paid plan to save unlimited citations and export to Word, BibTeX, or RIS.",
-                  },
-                  {
-                    q: "What do I get on the free account?",
-                    a: "Auto-fill from URL/DOI/ISBN, all 11 citation styles, all source types, plus saving up to 20 citations a month across 2 projects. You also get the full writing toolkit — grammar, punctuation, paraphrasing, summarizing, thesis, outline, hook and conclusion tools. No ads, ever.",
-                  },
-                  {
-                    q: "Can I cancel anytime?",
-                    a: "Absolutely. Cancel in one click from your dashboard. No hidden cancellation flow, no continued billing after cancellation.",
-                  },
-                  {
-                    q: "Do you support Bluebook for legal citations?",
-                    a: "Yes — Bluebook 22nd Edition for cases, statutes, books, and journal articles, in both practitioner and law-review formats.",
-                  },
-                  {
-                    q: "How accurate are the citations?",
-                    a: "Our engine is rule-based and follows each style guide precisely. We still recommend reviewing citations before final submission — no tool is perfect for every edge case.",
-                  },
-                ].map((faq) => (
+                {PRICING_FAQS.map((faq) => (
                   <div key={faq.q} className="rounded-xl border border-border bg-background p-6">
                     <h3 className="font-semibold">{faq.q}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{faq.a}</p>
                   </div>
                 ))}
               </div>
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(PRICING_FAQ_JSONLD) }}
+              />
             </div>
           </div>
         </section>

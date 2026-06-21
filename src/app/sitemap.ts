@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { STYLE_SEO, SOURCE_SEO } from "@/lib/style-seo";
 import { getPublishedPosts } from "@/lib/blog";
+import { COMPETITORS } from "@/lib/competitors";
 
 const BASE = process.env.NEXT_PUBLIC_SITE_URL || "https://citeplex.com";
 
@@ -14,6 +15,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: "/generate", priority: 0.95, changeFrequency: "weekly" },
   { path: "/tools", priority: 0.9, changeFrequency: "weekly" },
   { path: "/blog", priority: 0.8, changeFrequency: "daily" },
+  { path: "/compare", priority: 0.8, changeFrequency: "monthly" },
   { path: "/styles", priority: 0.85, changeFrequency: "weekly" },
   { path: "/pricing", priority: 0.7, changeFrequency: "monthly" },
   { path: "/plagiarism-checker", priority: 0.85, changeFrequency: "weekly" },
@@ -52,6 +54,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(post.updatedAt),
       changeFrequency: "monthly",
       priority: 0.7,
+    });
+  }
+
+  // Comparison pages — /vs/easybib, /vs/scribbr, …
+  for (const c of COMPETITORS) {
+    entries.push({
+      url: `${BASE}/vs/${c.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.78,
     });
   }
 

@@ -23,6 +23,7 @@ const columns = [
       { name: "Pricing", href: "/pricing" },
       { name: "Style Guides", href: "/styles" },
       { name: "Blog", href: "/blog" },
+      { name: "Compare", href: "/compare" },
     ],
   },
   {
